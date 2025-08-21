@@ -1,0 +1,14 @@
+@startuml usecase
+
+left to right direction
+
+:User: 
+package "Brew Trade Hub" {
+    :User: --> (registers)
+    :User: --> (views/maintains item catalog)
+    :User: --> (offers an item for sale)
+    :User: --> (makes an offer to buy item)
+    :User: --> (accepts an offer)
+    :User: --> (ships an item)
+    :User: --> (receives an item)
+@enduml

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block main %}
+<a href="{{ url_for('catalog', sort_by=0) }}">
+    <button type="button" class="button">Back to Catalog</button>
+</a>
+<br><br>
+<h3>--{{ review.comment }}</h3>
+{% for reply in review.replies %}
+    <p>----{{reply.comment}}</p>
+{% endfor %}
+    <form action="" method="POST" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    {{ form.hidden_tag() }}
+    {{ form.comment }}
+    {{ form.submit  }}
+</form>
+{% endblock %}

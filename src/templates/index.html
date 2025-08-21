@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block main %}
+<h1>Welcome to Brew Trade Hub!</h1>
+<h2>Please, choose an option below:</h2>
+<a href="{{ url_for('login') }}">
+    <button type="button" class="button">Login</button>
+</a>
+<a href="{{ url_for('signup') }}">
+    <button type="button" class="button">Sign Up</button>
+</a>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block main %}
+<a href="{{ url_for('catalog', sort_by=0) }}">
+    <button type="button" class="button">Back to Catalog</button>
+</a>
+<br><br>
+{% if current_profile %}
+<h1>{{ current_profile.id }}</h1>
+<table>
+    <tbody>
+        <tr>
+            <td>Rating</td>
+            <td>{{ avg }}</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>{{ current_profile.id }}</td>
+        </tr>
+    </tbody>
+</table>
+<h2> Reviews </h2>
+<h3>Write a comment:</h3>
+<form action="" method="POST" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    {{ form.hidden_tag() }}
+    <p>{{ form.stars  }}</p>
+    <p>{{ form.comment}}</p>
+    <p>{{ form.submit }}</p>
+</form>
+{% for review in current_profile.reviews %}
+    <h4>[{{ review.star_rating }} \ 5] {{ review.comment }}</h4>
+    {% for reply in review.replies %}
+    <p>---- {{ reply.comment }}</p>
+    {% endfor %}
+    ----
+    <a href="{{ url_for('profile_reply', current_profile=current_profile.id, comment_id=review.id) }}">
+        <button type="button" class="button">REPLY</button>
+    </a>
+{% endfor %}
+{% else %}
+    <h1>User not found</h1>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,35 @@
+@startuml class
+
+class User {
+    id
+    name
+    company
+    address
+    city
+    state
+    phone
+    website
+    description
+    creation_date
+    passwd
+}
+
+class Item { 
+    code 
+    description 
+    year 
+    type
+    brand 
+}
+
+class Offer { 
+    id 
+    price 
+    creation_date
+    status
+}
+
+Offer "n" o-> "1" User: seller_id, buyer_id
+Offer "n" o-> "1" Item: item_code
+
+@enduml

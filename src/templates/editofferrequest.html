@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block main %}
+<form action="" method="POST" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    {{ form.hidden_tag() }}
+    <table>
+        <p>Enter New Values Below</p>
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Year</th>
+                <th>Type</th>
+                <th>Brand</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{offer.code}}</td>
+                <td>{{offer.description}}</td>
+                <td>{{offer.year}}</td>
+                <td>{{offer.productType}}</td>
+                <td>{{offer.brand}}</td>
+                <td>{{offer.price}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>{{form.description}}</td>
+                <td>{{form.year}}</td>
+                <td>{{form.productType}}</td>
+                <td>{{form.brand}}</td>
+                <td>{{form.price}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <p>{{ form.submit() }}</p>
+</form>
+<p>
+    {% if form.errors %}
+    {{ "A field is missing." }}
+    {% endif %}
+</p>
+{% endblock %}

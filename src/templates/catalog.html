@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block main %}
+<p>Actions:</p>
+<a href="{{ url_for('create_offer') }}">
+    <button type="button" class="button">Create Offer</button>
+</a>
+<a href="{{ url_for('edit_offer') }}">
+    <button type="button" class="button">Edit Offer</button>
+</a>
+<a href="{{ url_for('edit_offer') }}">
+    <button type="button" class="button">Your Listings</button>
+</a>
+<br>
+<p>View Orders:</p>
+<a href="{{ url_for('refresh_catalog') }}">
+    <button type="button" class="button">Opened</button>
+</a>
+<a href="{{ url_for('edit_offer') }}">
+    <button type="button" class="button">Accepted</button>
+</a>
+<a href="{{ url_for('edit_offer') }}">
+    <button type="button" class="button">Shipped</button>
+</a>
+<a href="{{ url_for('edit_offer') }}">
+    <button type="button" class="button">Received</button>
+</a>
+<p>Sort By:
+<a href="{{ url_for('catalog', sort_by=0) }}">
+    <button type="button" class="button">Description</button>
+</a>
+<a href="{{ url_for('catalog', sort_by=1) }}">
+    <button type="button" class="button">Year</button>
+</a>
+<a href="{{ url_for('catalog', sort_by=2) }}">
+    <button type="button" class="button">Type</button>
+</a>
+<a href="{{ url_for('catalog', sort_by=3) }}">
+    <button type="button" class="button">Brand</button>
+</a>
+</p>
+<table id="offer-table">
+    <thead>
+        <tr>
+            <th>Seller</th>
+            <th>Description</th>
+            <th>Year</th>
+            <th>Type</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for offer in offers %}
+        {% if loop.index % 2 == 0 %}
+            <tr class ='even_row'>
+        {% else %}
+            <tr class = 'odd_row'>
+        {% endif %}
+            <td>{{ offer.seller_id }}</td>
+            <td>{{ offer.description }}</td>
+            <td>{{ offer.year }}</td>
+            <td>{{ offer.productType }}</td>
+            <td>{{ offer.brand }}</td>
+            <td>{{ offer.price }}</td>
+            {% if offer.seller_id != current_user.id %}
+            <td>
+                <a href="{{ url_for('confirmation', code=offer.code) }}">
+                    <button type="button" class="button">Accept Offer</button>
+                </a>
+                <a href="{{ url_for('profile', current_profile=offer.seller_id) }}">
+                    <button type="button" class="button">Seller Profile</button>
+                </a>
+            </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<br>
+<a href="{{ url_for('signout') }}">
+    <button type="button" class="button">Sign Out</button>
+</a>
+{% endblock %}

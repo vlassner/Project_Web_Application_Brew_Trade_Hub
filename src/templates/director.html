@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block main %}
+    <p>This is the directory collection page for, You should only be seeing this if you are a developer.</p>
+    <p>Note: some pages require you to be logged in as a user.</p>
+    <p>Choose a page:</p>
+    <a href="{{ url_for('login') }}">
+        <button type="button" class="button">Login</button>
+    </a>
+    <a href="{{ url_for('signup') }}">
+        <button type="button" class="button">Sign Up</button>
+    </a>
+    <a href="{{ url_for('catalog') }}">
+        <button type="button" class="button">Catalog</button>
+    </a>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block main %}
+    Sorry, you cannot accept your own offers.
+    <p />
+    Please, choose an option below:
+    <p />
+    <a href="{{ url_for('catalog', sort_by=5) }}">
+        <button type="button" class="button">Return to Catalog</button>
+    </a>
+    <a href="{{ url_for('edit_offer') }}">
+        <button type="button" class="button">Return to Editing Offers</button>
+    </a>
+    
+<a href="{{ url_for('signout') }}">
+    <button type="button" class="button">Sign Out</button>
+</a>
+{% endblock %}
